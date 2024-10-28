@@ -32,6 +32,26 @@ void Bird::load(std::ifstream& in) {
     std::getline(in, habitat);
 }
 
+void Bird::edit(){
+    std::string newinfo;
+    int choice = -1;
+    std::cout<<"1. Edit breed\n2. Edit color\n3. Edit food type\n4. Edit habitat\nenter what to edit:\n";
+    std::cin>>choice;
+    std::cout<<"type what you want to change it to"<<std::endl;
+    std::cin>>newinfo;
+    if (choice == 1){
+        setBreed(newinfo);
+    } else if (choice == 2){
+        setColor(newinfo);
+    } else if (choice == 3){
+        setFoodType(newinfo);
+    } else if (choice == 4){
+        setHabitat(newinfo);
+    } else {
+        std::cout<<"wrong choice, returning to menu"<<std::endl;
+    }
+}
+
 void Bird::setBreed(const std::string& breed) { this->breed = breed; }
 void Bird::setColor(const std::string& color) { this->color = color; }
 void Bird::setFoodType(const std::string& foodType) { this->foodType = foodType; }

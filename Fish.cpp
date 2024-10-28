@@ -31,6 +31,24 @@ void Fish::load(std::ifstream& in) {
     std::getline(in, foodType);
 }
 
+void Fish::edit(){
+    std::string newinfo;
+    int choice = -1;
+    std::cout<<"1. Edit breed\n2. Edit color\n3. Edit food type\nenter what to edit:\n";
+    std::cin>>choice;
+    std::cout<<"type what you want to change it to"<<std::endl;
+    std::cin>>newinfo;
+    if (choice == 1){
+        setBreed(newinfo);
+    } else if (choice == 2){
+        setColor(newinfo);
+    } else if (choice == 3){
+        setFoodType(newinfo);
+    } else {
+        std::cout<<"wrong choice, returning to menu"<<std::endl;
+    }
+}
+
 void Fish::setBreed(const std::string& breed) { this->breed = breed; }
 void Fish::setColor(const std::string& color) { this->color = color; }
 void Fish::setFoodType(const std::string& foodType) { this->foodType = foodType; }

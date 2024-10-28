@@ -32,6 +32,26 @@ void Cat::load(std::ifstream& in) {
     std::getline(in, nickname);
 }
 
+void Cat::edit(){
+    std::string newinfo;
+    int choice = -1;
+    std::cout<<"1. Edit breed\n2. Edit color\n3. Edit owner name\n4. Edit nickname\nenter what to edit:\n";
+    std::cin>>choice;
+    std::cout<<"type what you want to change it to"<<std::endl;
+    std::cin>>newinfo;
+    if (choice == 1){
+        setBreed(newinfo);
+    } else if (choice == 2){
+        setColor(newinfo);
+    } else if (choice == 3){
+        setOwnerName(newinfo);
+    } else if (choice == 4){
+        setNickname(newinfo);
+    } else {
+        std::cout<<"wrong choice, returning to menu"<<std::endl;
+    }
+}
+
 void Cat::setBreed(const std::string& breed) { this->breed = breed; }
 void Cat::setColor(const std::string& color) { this->color = color; }
 void Cat::setOwnerName(const std::string& ownerName) { this->ownerName = ownerName; }

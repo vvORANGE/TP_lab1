@@ -21,7 +21,8 @@ public:
     void display() const override;
     void save(std::ofstream& out) const override; // Метод для сохранения
     void load(std::ifstream& in) override; // Метод для загрузки
-
+    void edit();
+    
     // Setters and getters
     void setBreed(const std::string& breed);
     void setColor(const std::string& color);

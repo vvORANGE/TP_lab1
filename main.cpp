@@ -9,7 +9,7 @@ int main() {
     int choice;
 
     do {
-        std::cout << "1. Add Fish\n2. Add Bird\n3. Add Cat\n4. Remove Animal\n5. Display Animals\n6. Save to File\n7. Load from File\n0. Exit\n";
+        std::cout << "1. Add Fish\n2. Add Bird\n3. Add Cat\n4. Remove Animal\n5. Edit Animal\n6. Display Animals\n7. Save to File\n8. Load from File\n0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -46,10 +46,21 @@ int main() {
                 }
                 break;
             }
-            case 5:
+            case 5:{
+                int index;
+                std::cout << "Enter index to edit: ";
+                std::cin >> index;
+                try {
+                    keeper.editAnimal(index);
+                } catch (const std::out_of_range& e) {
+                    std::cerr << e.what() << std::endl;
+                }
+                break;
+            }
+            case 6:
                 keeper.displayAnimals();
                 break;
-            case 6: {
+            case 7: {
                 std::string filename;
                 std::cout << "Enter filename to save: ";
                 std::cin >> filename;
@@ -60,7 +71,7 @@ int main() {
                 }
                 break;
             }
-            case 7: {
+            case 8: {
                 std::string filename;
                 std::cout << "Enter filename to load: ";
                 std::cin >> filename;
@@ -76,6 +87,7 @@ int main() {
                 break;
             default:
                 std::cout << "Invalid choice. Try again." << std::endl;
+            break;
         }
     } while (choice != 0);
 

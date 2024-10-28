@@ -16,6 +16,7 @@ public:
 
     void addAnimal(Base* animal);
     void removeAnimal(int index);
+    void editAnimal(int index);
     void displayAnimals() const;
     void saveToFile(const std::string& filename) const;
     void loadFromFile(const std::string& filename);

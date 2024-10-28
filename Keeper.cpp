@@ -40,6 +40,17 @@ void Keeper::removeAnimal(int index) {
     size--;
 }
 
+void Keeper::editAnimal(int index){
+    if (index < 0 || index >= size) {
+        throw std::out_of_range("Index out of range.");
+    }
+    for (int i = 0; i < size; i++){
+        if (i == index){
+            animals[i]->edit();
+        }
+    }
+}
+
 void Keeper::displayAnimals() const {
     for (int i = 0; i < size; ++i) {
         animals[i]->display();
@@ -63,8 +74,8 @@ void Keeper::loadFromFile(const std::string& filename) {
     if (!inFile) {
         throw std::runtime_error("Could not open file for reading.");
     }
-    for (int i = 0; i < size; i++){
-        removeAnimal(i);
+    while(size != 0){
+        removeAnimal(0);
     }
     inFile >> size;
     inFile.ignore(); // Игнорируем символ новой строки после числа
