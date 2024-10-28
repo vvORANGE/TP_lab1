@@ -1,4 +1,7 @@
 #include "Keeper.h"
+#include "Fish.h"
+#include "Bird.h"
+#include "Cat.h"
 
 Keeper::Keeper() : animals(nullptr), size(0) {}
 
@@ -44,26 +47,39 @@ void Keeper::displayAnimals() const {
 }
 
 void Keeper::saveToFile(const std::string& filename) const {
-    std::ofstream outFile(filename, std::ios::binary);
+    std::ofstream outFile(filename, std::ios::out);
     if (!outFile) {
         throw std::runtime_error("Could not open file for writing.");
     }
-    outFile.write(reinterpret_cast<const char*>(&size), sizeof(size));
+    outFile << size << "\n"; // Сохраняем количество объектов
     for (int i = 0; i < size; ++i) {
-        // дописать сохранение в файл
+        animals[i]->save(outFile); // Сохраняем каждый объект
     }
     outFile.close();
 }
 
 void Keeper::loadFromFile(const std::string& filename) {
-    std::ifstream inFile(filename, std::ios::binary);
+    std::ifstream inFile(filename, std::ios::in);
     if (!inFile) {
         throw std::runtime_error("Could not open file for reading.");
     }
-    inFile.read(reinterpret_cast<char*>(&size), sizeof(size));
+    for (int i = 0; i < size; i++){
+        removeAnimal(i);
+    }
+    inFile >> size;
+    inFile.ignore(); // Игнорируем символ новой строки после числа
     animals = new Base*[size];
     for (int i = 0; i < size; ++i) {
-        // дописать загрузку из файла
+        std::string type;
+        std::getline(inFile, type);
+        if (type == "Fish") {
+            animals[i] = new Fish();
+        } else if (type == "Bird") {
+            animals[i] = new Bird();
+        } else if (type == "Cat") {
+            animals[i] = new Cat();
+        }
+        animals[i]->load(inFile); // Загружаем каждую сущность
     }
     inFile.close();
 }

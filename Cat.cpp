@@ -21,6 +21,17 @@ void Cat::display() const {
     std::cout << "Cat: Breed: " << breed << ", Color: " << color << ", Owner: " << ownerName << ", Nickname: " << nickname << std::endl;
 }
 
+void Cat::save(std::ofstream& out) const {
+    out << "Cat\n" << breed << "\n" << color << "\n" << ownerName << "\n" << nickname << "\n";
+}
+
+void Cat::load(std::ifstream& in) {
+    std::getline(in, breed);
+    std::getline(in, color);
+    std::getline(in, ownerName);
+    std::getline(in, nickname);
+}
+
 void Cat::setBreed(const std::string& breed) { this->breed = breed; }
 void Cat::setColor(const std::string& color) { this->color = color; }
 void Cat::setOwnerName(const std::string& ownerName) { this->ownerName = ownerName; }

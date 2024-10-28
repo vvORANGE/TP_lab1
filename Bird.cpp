@@ -21,6 +21,17 @@ void Bird::display() const {
     std::cout << "Bird: Breed: " << breed << ", Color: " << color << ", Food Type: " << foodType << ", Habitat: " << habitat << std::endl;
 }
 
+void Bird::save(std::ofstream& out) const {
+    out << "Bird\n" << breed << "\n" << color << "\n" << foodType << "\n" << habitat << "\n";
+}
+
+void Bird::load(std::ifstream& in) {
+    std::getline(in, breed);
+    std::getline(in, color);
+    std::getline(in, foodType);
+    std::getline(in, habitat);
+}
+
 void Bird::setBreed(const std::string& breed) { this->breed = breed; }
 void Bird::setColor(const std::string& color) { this->color = color; }
 void Bird::setFoodType(const std::string& foodType) { this->foodType = foodType; }

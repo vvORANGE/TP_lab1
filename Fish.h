@@ -3,6 +3,7 @@
 
 #include "Base.h"
 #include <iostream>
+#include <fstream>
 
 class Fish : public Base {
 private:
@@ -17,6 +18,8 @@ public:
     ~Fish();
 
     void display() const override;
+    void save(std::ofstream& out) const override; // Метод для сохранения
+    void load(std::ifstream& in) override; // Метод для загрузки
 
     // Setters and getters
     void setBreed(const std::string& breed);
